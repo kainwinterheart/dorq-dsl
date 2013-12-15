@@ -1,0 +1,7 @@
+
+print (
+	let $str = "Hello, World!" + E (
+		let $str = "\n"
+	);
+);
+
