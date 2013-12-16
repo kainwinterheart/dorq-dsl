@@ -117,14 +117,14 @@ Syntax
 
 ### Hash methods
 
-	let $var = hash ( "key" => "value" );
+	let $var = hash ( "key" => "value"; "other_key" => "other_value" );
 
 	let $value = $var.get( let $key = "key" );
 	let $new_value = $var.set( let $key = "key"; let $val = 100500; );
 	let $array_with_keys = $var.keys();
 	let $array_with_values = $var.values();
 	let $bool = $var.exists( let $key = "some key" );
-	let $value_for_removed_key = $val.delete( "key" );
+	let $value_for_removed_key = $val.delete( let $key = "key" );
 
 ### Lambda methods
 
