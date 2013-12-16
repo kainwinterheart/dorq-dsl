@@ -24,6 +24,11 @@ Syntax
 
 	100500
 
+### Boolean definition
+
+	true()
+	false() # sorry for brackets
+
 ### Array definition
 
 	array ( "element1"; 2; 3 );
@@ -40,7 +45,7 @@ Syntax
 	let $var = hash ();
 	let $var = array ();
 	let $var = function();
-	let $var = true;
+	let $var = true();
 	let $var = -1;
 
 ### Function definition
@@ -139,4 +144,22 @@ Syntax
 	print( let $str = "" );
 	E( let $str = "" ); # interpolate escape sequences in string
 	Dump( let $val = $some_variable ); # dump internal Dorq object
+
+	ruleset (
+		let $set = array (
+			array (
+				lambda (
+					"boolean" == "equation";
+				);
+
+				lambda (
+					print ( let $str = "action code" );
+				);
+			);
+		);
+
+		let $default = lambda (
+			print ( let $str = "default action" );
+		);
+	);
 
