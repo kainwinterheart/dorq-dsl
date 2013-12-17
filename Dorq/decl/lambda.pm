@@ -5,6 +5,8 @@ package Dorq::decl::lambda;
 
 use base 'Dorq::decl';
 
+use Scalar::Util 'weaken';
+
 sub new
 {
 	my $val = $_[ 0 ] -> SUPER::new( $_[ 1 ] );
@@ -49,6 +51,12 @@ sub exec
 
 			return $var -> exec( $local_context, 1 );
 		} );
+
+		{
+#			weaken( my $weak = $context );
+
+			$o -> set_parental_context( $context ); # $weak );
+		}
 
 		return $tokens -> [ $pos ] = Dorq::link -> new( \sub{ $o } );
 	}

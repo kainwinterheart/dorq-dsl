@@ -5,9 +5,29 @@ package Dorq::context;
 
 use base 'Dorq::object';
 
+use Scalar::Util 'weaken';
+
 sub new
 {
-	return $_[ 0 ] -> SUPER::new( { parent => $_[ 1 ] } );
+	my $self = $_[ 0 ] -> SUPER::new( { parent => $_[ 1 ] } );
+
+	weaken( my $weak = $self );
+
+	my $var = Dorq::var -> new( \( my $dummy = '$context' ) );
+
+	$var -> set_val( $weak );
+
+	$self -> add( $var );
+
+	return $self;
+}
+
+sub public
+{
+	return [
+		'exists',
+		'localize'
+	];
 }
 
 sub add
@@ -29,6 +49,19 @@ sub has
 	{
 		return $p -> has( $_[ 1 ] );
 	}
+}
+
+sub exists
+{
+	my ( $self, $ctx ) = @_;
+
+	my $name = $ctx -> get( Dorq::var -> new( \( my $dummy = '$name' ) ) ) -> val();
+
+	die '$name should be a string' unless $name -> isa( 'Dorq::type::string' );
+
+	my $result = $self -> has( Dorq::var -> new( \( my $dummy = $name -> val() ) ) );
+
+	return Dorq::type::bool -> new( \( my $dummy = ( $result ? 1 : 0 ) ) );
 }
 
 sub get
@@ -68,7 +101,12 @@ sub localize
 		}
 	}
 
-	return 1;
+	return Dorq::type::undef -> new( \( my $dummy = undef ) );
+}
+
+sub set_parent
+{
+	return $_[ 0 ] -> { 'parent' } = $_[ 1 ];
 }
 
 -1;

@@ -44,6 +44,14 @@ sub exec
 		$tokens -> [ $pos - 1 ] = Dorq::link -> new( \sub{ return $tokens -> [ $pos ] } ) unless $tokens -> [ $pos - 1 ] -> isa( 'Dorq::link' );
 		$tokens -> [ $pos + 1 ] = Dorq::link -> new( \sub{ return $tokens -> [ $pos ] } ) unless $tokens -> [ $pos + 1 ] -> isa( 'Dorq::link' );
 
+		{
+			my $var = Dorq::var -> new( \( my $dummy = '$self' ) );
+
+			$var -> set_val( $obj );
+
+			$context -> add( $var );
+		}
+
 		my $result = $obj -> call_public_method( $name, $context );
 
 		return $tokens -> [ $pos ] = Dorq::link -> new( \sub{ $result } );

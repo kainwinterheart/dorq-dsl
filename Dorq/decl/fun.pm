@@ -5,6 +5,8 @@ package Dorq::decl::fun;
 
 use base 'Dorq::decl';
 
+use Scalar::Util 'weaken';
+
 sub new
 {
 	my $val = $_[ 0 ] -> SUPER::new( $_[ 1 ] );
@@ -47,6 +49,12 @@ sub exec
 			$var -> make_recompillable();
 
 			$var = Dorq::code::block::custom -> new( $name -> name(), \sub{ shift; $code -> exec( @_ ) } );
+		}
+
+		{
+			weaken( my $weak = $context );
+
+			$var -> set_parental_context( $weak );
 		}
 
 		$context -> add( $var );

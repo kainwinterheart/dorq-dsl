@@ -147,6 +147,20 @@ Syntax
 
 	$var.call( let $in = "some string" );
 
+### Context object
+
+You have an access to $context object almost anywhere. It represents, well, current context.
+
+#### Methods
+
+##### exists( let $name = "..." )
+
+Check whether a named symbol exists in current context.
+
+##### localize()
+
+Take all symbols from parental context and isolate current context from all parental contexts. Best used together with lambda.call() .
+
 ### Builtin functions
 
 	print( let $str = "" );

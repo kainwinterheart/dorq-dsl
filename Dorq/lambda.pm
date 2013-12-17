@@ -28,7 +28,22 @@ sub call
 {
 	my ( $self, $context ) = @_;
 
+	$context = Dorq::context -> new( $context );
+
+	$context -> localize();
+	$context -> set_parent( $self -> parental_context() );
+
 	return $self -> val() -> ( $context );
+}
+
+sub parental_context
+{
+	return ${ $_[ 0 ] -> { 'parental_context' } };
+}
+
+sub set_parental_context
+{
+	return ${ $_[ 0 ] -> { 'parental_context' } = \$_[ 1 ] };
 }
 
 -1;

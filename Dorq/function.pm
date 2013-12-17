@@ -28,7 +28,13 @@ sub exec
 # print &Data::Dumper::Dumper( $context );
 		$var -> exec( $context, ( $var -> isa( 'Dorq::code::block' ) ? 1 : () ) );
 # die &Data::Dumper::Dumper( $context );
-#		$context -> localize();
+
+		if( $body -> isa( 'Dorq::code::block::custom' ) )
+		{
+			$context -> localize();
+			$context -> set_parent( $body -> parental_context() );
+		}
+
 # print &Data::Dumper::Dumper( $context );
 
 		my $result = $body -> exec( $context );

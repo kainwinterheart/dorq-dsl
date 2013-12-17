@@ -3,6 +3,16 @@ use utf8;
 
 package Dorq::All;
 
+BEGIN
+{
+	require Carp;
+
+	$SIG{ __DIE__ } = sub
+	{
+		CORE::die &Carp::longmess( @_ );
+	};
+};
+
 use Dorq::globalstate;
 use Dorq::internals;
 use Dorq::builtins;

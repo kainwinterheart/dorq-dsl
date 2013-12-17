@@ -25,5 +25,15 @@ sub exec
 	return shift -> val() -> ( @_ );
 }
 
+sub parental_context
+{
+	return ${ $_[ 0 ] -> { 'parental_context' } };
+}
+
+sub set_parental_context
+{
+	return ${ $_[ 0 ] -> { 'parental_context' } = \$_[ 1 ] };
+}
+
 -1;
 
