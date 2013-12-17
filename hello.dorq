@@ -2,15 +2,15 @@
 let $out;
 
 ruleset (
-	let $set = array (
-		array (
+	let $set = [ (
+		[ (
 			lambda (
 				0 == 1;
 			);
 			lambda (
 				$out = "Dorq";
 			);
-		);
+		) ];
 		array (
 			lambda (
 				7 - 5 == 1 + 1;
@@ -19,7 +19,7 @@ ruleset (
 				$out = "World";
 			);
 		);
-	);
+	) ];
 	let $default = lambda (
 		$out = "Anonymous";
 	);

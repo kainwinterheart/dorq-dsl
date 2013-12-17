@@ -85,6 +85,10 @@ my %table  = (
 	op_comma     => qr/^\,(?!(\s))$/,
 	parens_open  => qr/^\((?!(\s))$/,
 	parens_close => qr/^\)(?!(\s))$/,
+	sqbra_open   => qr/^\[(?!(\s))$/,
+	sqbra_close  => qr/^\](?!(\s))$/,
+	figbra_open   => qr/^\{(?!(\s))$/,
+	figbra_close  => qr/^\}(?!(\s))$/,
 	method_call  => qr/^\.[a-z_][a-z0-9_]*(?!(\s))$/i,
 	function     => qr/^[a-z_][a-z0-9_]*(?!(\s))$/i,
 );

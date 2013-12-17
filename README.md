@@ -32,10 +32,18 @@ Syntax
 ### Array definition
 
 	array ( "element1"; 2; 3 );
+	array ();
+
+	[ ( "element1"; 2; 3 ) ]
+	[]
 
 ### Hash definition
 
 	hash ( "key" => "value"; "other_key" => 3; "third key"; 5; );
+	hash ();
+
+	{ ( "key" => "value"; "other_key" => 3; "third key"; 5; ) };
+	{}
 
 ### Variable definition
 

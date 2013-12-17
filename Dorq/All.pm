@@ -64,6 +64,12 @@ use Dorq::method::call;
 use Dorq::parens::close;
 use Dorq::parens::open;
 
+use Dorq::sqbra::close;
+use Dorq::sqbra::open;
+
+use Dorq::figbra::close;
+use Dorq::figbra::open;
+
 use Dorq::separator;
 use Dorq::separator2;
 
