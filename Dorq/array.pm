@@ -153,6 +153,15 @@ sub each
 
 	my $local_context = Dorq::context -> new( $context );
 
+	{
+		my $var = Dorq::var -> new( \( my $dummy = '$loop' ) );
+
+		$var -> set_val( Dorq::loop::object -> new() );
+
+		$local_context -> add( $var );
+	}
+
+LAST_CALLED_LOOP:
 	foreach my $_el ( @{ $self -> { 'list' } } )
 	{
 		my $el = Dorq::var -> new( \( my $dummy = '$element' ) );

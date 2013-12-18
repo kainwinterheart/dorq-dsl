@@ -83,6 +83,8 @@ use Dorq::figbra::open;
 use Dorq::separator;
 use Dorq::separator2;
 
+use Dorq::loop::object;
+
 use Dorq::Runner;
 use Dorq::Launcher;
 

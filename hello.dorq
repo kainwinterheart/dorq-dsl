@@ -31,3 +31,5 @@ print (
 	);
 );
 
+[(1;2;3)].each( let $code = lambda ( print( let $str = "" + $element + E( let $str = "\n" ) ); $loop.last() ) );
+

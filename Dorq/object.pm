@@ -46,6 +46,7 @@ sub call_public_method
 
 	foreach my $m ( @{ $self -> public() } )
 	{
+	warn sprintf('has:%s,need:%s,eq:%d',$m,$method,($m eq $method));
 		if( $m eq $method )
 		{
 			return $self -> $m( @args );
