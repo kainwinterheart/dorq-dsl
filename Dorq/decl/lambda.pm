@@ -42,7 +42,7 @@ sub exec
 
 		my $o = Dorq::lambda -> new( sub
 		{
-			my $local_context = Dorq::context -> new( shift @_ );
+			my $local_context = Dorq::context -> new( $_[ 0 ] );
 
 #			$local_context -> add( $outer_def );
 

@@ -161,7 +161,6 @@ sub each
 		$local_context -> add( $var );
 	}
 
-LAST_CALLED_LOOP:
 	foreach my $_el ( @{ $self -> { 'list' } } )
 	{
 		my $el = Dorq::var -> new( \( my $dummy = '$element' ) );
@@ -170,7 +169,21 @@ LAST_CALLED_LOOP:
 
 		$local_context -> add( $el );
 
-		$ilambda -> call( $local_context );
+		eval
+		{
+			$ilambda -> call( $local_context );
+		};
+
+		if( my $e = $@ )
+		{
+			if( blessed $e )
+			{
+				next if $e -> isa( 'Dorq::loop::next_exc' );
+				last if $e -> isa( 'Dorq::loop::last_exc' );
+			}
+
+			die $e;
+		}
 	}
 
 	return;

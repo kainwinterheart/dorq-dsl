@@ -161,6 +161,20 @@ Check whether a named symbol exists in current context.
 
 Take all symbols from parental context and isolate current context from all parental contexts. Best used together with lambda.call() .
 
+### Loop object
+
+You have an access to $loop object inside of almost every loop.
+
+#### Methods
+
+##### next()
+
+Skips current iteration immediately.
+
+##### last()
+
+Ends current loop immediately.
+
 ### Builtin functions
 
 	print( let $str = "" );

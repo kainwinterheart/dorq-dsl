@@ -9,7 +9,7 @@ BEGIN
 
 	$SIG{ __DIE__ } = sub
 	{
-		CORE::die &Carp::longmess( @_ );
+		CORE::die( ( scalar( grep{ ref } @_ ) ) ? @_ : &Carp::longmess( @_ ) );
 	};
 };
 
@@ -84,6 +84,8 @@ use Dorq::separator;
 use Dorq::separator2;
 
 use Dorq::loop::object;
+use Dorq::loop::next_exc;
+use Dorq::loop::last_exc;
 
 use Dorq::Runner;
 use Dorq::Launcher;

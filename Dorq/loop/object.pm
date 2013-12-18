@@ -20,12 +20,12 @@ sub public
 
 sub next
 {
-	CORE::next LAST_CALLED_LOOP;
+	die Dorq::loop::next_exc -> new();
 }
 
 sub last
 {
-	CORE::last LAST_CALLED_LOOP;
+	die Dorq::loop::last_exc -> new();
 }
 
 -1;
