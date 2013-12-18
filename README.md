@@ -111,6 +111,9 @@ Syntax
 	$var.push( let $list = array( 4; 5; 6; ) );
 	$var.unshift( let $list = array( 0 ) );
 	$var.size();
+	let $first_el = $var.first();
+	let $last_el = $var.last();
+	let $second_el = $var.get( let $idx = 1 );
 	let $first_el = $var.shift(); # also removes first element from array
 	let $last_el = $var.pop(); # also removes last element from array
 	let $second_el = $var.get( let $idx = 1 );

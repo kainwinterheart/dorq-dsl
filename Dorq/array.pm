@@ -22,7 +22,9 @@ sub public
 		'pop',
 		'get',
 		'set',
-		'each'
+		'each',
+		'first',
+		'last'
 	];
 }
 
@@ -187,6 +189,38 @@ sub each
 	}
 
 	return;
+}
+
+sub first
+{
+	my $self = shift;
+
+	my $ctx = Dorq::context -> new();
+
+	my $var = Dorq::var -> new( \( my $dummy = '$idx' ) );
+	my $int = Dorq::type::num -> new( \( my $dummy = 0 ) );
+
+	$var -> set_val( $int );
+
+	$ctx -> add( $var );
+
+	return $self -> get( $ctx );
+}
+
+sub last
+{
+	my $self = shift;
+
+	my $ctx = Dorq::context -> new();
+
+	my $var = Dorq::var -> new( \( my $dummy = '$idx' ) );
+	my $int = Dorq::type::num -> new( \( my $dummy = $#{ $self -> { 'list' } } ) );
+
+	$var -> set_val( $int );
+
+	$ctx -> add( $var );
+
+	return $self -> get( $ctx );
 }
 
 -1;
