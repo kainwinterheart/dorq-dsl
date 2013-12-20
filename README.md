@@ -80,13 +80,22 @@ Syntax
 
 	function_with_args( let $some_arg = "some string" );
 
+### Object methods
+
+Everything is an object and everything inherits from "object" class.
+
+	let $bool = $object.defined();
+
 ### String methods
 
 	let $var = "some string";
 
-	$var.split( let $re = "\s+" )
+	$var.split( let $re = "\s+" );
+	$var.like( let $re = "[a-z]+" );
+	$var.ilike( let $re = "[a-z]+" );
+	$var.length();
 
-	"some string".split( let $re = "\s+" )
+	"some string".split( let $re = "\s+" );
 
 ### Number methods
 

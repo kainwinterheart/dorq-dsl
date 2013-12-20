@@ -38,7 +38,12 @@ sub clone
 	return bless( $new, ( ref( $self ) or $self ) );
 }
 
-sub public { [] }
+sub public
+{
+	return [
+		'defined'
+	];
+}
 
 sub call_public_method
 {
@@ -54,6 +59,13 @@ sub call_public_method
 	}
 
 	die sprintf( '%s has no such method: %s', ref( $self ), $method );
+}
+
+sub defined
+{
+	my $self = shift;
+
+	return Dorq::type::bool -> new( \( my $dummy = ( $self -> isa( 'Dorq::type::undef' ) ? 0 : 1 ) ) );
 }
 
 -1;

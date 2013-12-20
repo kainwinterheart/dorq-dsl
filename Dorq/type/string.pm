@@ -8,8 +8,37 @@ use base 'Dorq::type';
 sub public
 {
 	return [
-		'split'
+		@{ $_[ 0 ] -> SUPER::public() },
+		'split',
+		'length',
+		'like',
+		'ilike'
 	];
+}
+
+sub length
+{
+	my $self = shift;
+
+	return Dorq::type::num -> new( \( my $dummy = length( &Dorq::internals::du( $self -> val() ) ) ) );
+}
+
+sub like
+{
+	my ( $self, $context ) = @_;
+
+	my $re = &Dorq::internals::du( $context -> get( Dorq::var -> new( \(my $dummy = '$re' ) ) ) -> val() -> cast_string() -> val() );
+
+	return Dorq::type::bool -> new( \( my $dummy = ( &Dorq::internals::du( $self -> val() ) =~ m/$re/ ) ) );
+}
+
+sub ilike
+{
+	my ( $self, $context ) = @_;
+
+	my $re = &Dorq::internals::du( $context -> get( Dorq::var -> new( \(my $dummy = '$re' ) ) ) -> val() -> cast_string() -> val() );
+
+	return Dorq::type::bool -> new( \( my $dummy = ( &Dorq::internals::du( $self -> val() ) =~ m/$re/i ) ) );
 }
 
 sub split

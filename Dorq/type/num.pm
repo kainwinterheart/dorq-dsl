@@ -8,6 +8,7 @@ use base 'Dorq::type';
 sub public
 {
 	return [
+		@{ $_[ 0 ] -> SUPER::public() },
 		'times'
 	];
 }

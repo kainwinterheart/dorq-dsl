@@ -25,6 +25,7 @@ sub new
 sub public
 {
 	return [
+		@{ $_[ 0 ] -> SUPER::public() },
 		'exists',
 		'localize'
 	];
